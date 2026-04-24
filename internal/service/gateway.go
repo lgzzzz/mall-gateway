@@ -376,6 +376,11 @@ func (s *GatewayService) handleOrderCreate(ctx kratoshttp.Context) error {
 }
 
 func (s *GatewayService) handleOrderGet(ctx kratoshttp.Context) error {
+	authInfo, ok := gwMiddleware.GetAuthInfo(ctx.Request().Context())
+	if !ok {
+		return ctx.JSON(http.StatusUnauthorized, errorResponse(errors.Unauthorized("UNAUTHORIZED", "unauthorized")))
+	}
+	_ = authInfo
 	orderID := ctx.Vars().Get("id")
 	req := &orderV1.GetOrderRequest{OrderId: orderID}
 	resp, err := s.clients.Order.GetOrder(ctx.Request().Context(), req)

@@ -10,7 +10,7 @@ import (
 	"go.opentelemetry.io/otel/trace"
 
 	"gateway/internal/client"
-	"mall-mall-gateway/internal/conf"
+	"mall-gateway/internal/conf"
 	"mall-gateway/internal/server"
 	"mall-gateway/internal/service"
 )

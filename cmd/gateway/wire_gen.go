@@ -25,6 +25,8 @@ func wireApp(cfg *conf.Config, logger log.Logger, tracer trace.Tracer) (*kratos.
 	gatewayService := service.NewGatewayService(clients, logger)
 	httpServer := server.NewHTTPServer(cfg, gatewayService, logger, tracer)
 	app := newApp(httpServer, logger)
-	return app, func() {
-	}, nil
+	cleanup := func() {
+		clients.Close()
+	}
+	return app, cleanup, nil
 }

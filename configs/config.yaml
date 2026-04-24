@@ -20,7 +20,7 @@ auth:
     - "GET:/api/product/v1/products"
     - "GET:/api/product/v1/products/{id}"
     - "GET:/api/inventory/v1/inventory/{id}"
-    - "GET:/api/promotion/v1/promotions"
+    - "GET:/api/promotion/v1/coupons"
 
 rate_limit:
   global: 1000
